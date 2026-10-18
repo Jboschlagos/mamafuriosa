@@ -1,8 +1,8 @@
-export default function Bio() {
+export default function SobreMi() {
   return (
-    <main className="p-8">
-      <h1 className="text-3xl font-bold">Bio</h1>
+    <>
+      <h1>Sobre mí</h1>
       <p>Próximamente.</p>
-    </main>
+    </>
   );
 }

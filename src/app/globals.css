@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f2f0eb;
+  --surface: #ffffff;
+  --foreground: #000000;
+
+  --rojo: #f90303;
+  --carbon: #111111;
+  --gris-calido: #d7d2cb;
+  --arena: #d6d2c4;
+  --rosa-empolvado: #e4d5d3;
+  --ciruela: #4a3041;
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-rojo: var(--rojo);
+  --color-carbon: var(--carbon);
+  --color-gris-calido: var(--gris-calido);
+  --color-arena: var(--arena);
+  --color-rosa-empolvado: var(--rosa-empolvado);
+  --color-ciruela: var(--ciruela);
+
+  --font-sans: var(--font-inter);
+  --font-titulo: var(--font-archivo-black);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+}
+
+h1,
+h2 {
+  font-family: var(--font-archivo-black), sans-serif;
+  font-weight: 400;
+}
+
+h1,
+.titular-hero {
+  font-size: 2.75rem;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+
+@media (min-width: 48rem) {
+  h1,
+  .titular-hero {
+    font-size: 4.5rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
 }

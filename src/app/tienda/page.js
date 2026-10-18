@@ -1,8 +1,8 @@
-export default function Mercado() {
+export default function Tienda() {
   return (
-    <main className="p-8">
-      <h1 className="text-3xl font-bold">Mercado</h1>
+    <>
+      <h1>Tienda</h1>
       <p>Próximamente.</p>
-    </main>
+    </>
   );
 }
