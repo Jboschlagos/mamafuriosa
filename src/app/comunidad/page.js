@@ -2,10 +2,11 @@ import { sql } from "@/lib/db";
 
 export default async function Comunidad() {
   const ofertas = await sql`
-    SELECT id, titulo, emprendimiento, ciudad, comuna
-    FROM ofertas
-    ORDER BY creado_en DESC
-  `;
+  SELECT id, titulo, emprendimiento, provincia, comuna
+  FROM ofertas
+  WHERE estado = 'publicada'
+  ORDER BY creado_en DESC
+`;
 
   return (
     <>
@@ -14,7 +15,7 @@ export default async function Comunidad() {
         {ofertas.map((oferta) => (
           <li key={oferta.id}>
             {oferta.titulo} · {oferta.emprendimiento} · {oferta.comuna},{" "}
-            {oferta.ciudad}
+            {oferta.provincia}
           </li>
         ))}
       </ul>
