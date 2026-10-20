@@ -38,10 +38,15 @@ const hijos = (padreId, tipo) =>
     .sort((a, b) => a.codigo.localeCompare(b.codigo));
 
 const ubicaciones = hijos("0", "REGION").map((r) => ({
-  region: r.nombre,
+  codigo: r.codigo,
+  nombre: r.nombre,
   provincias: hijos(r.id, "PROVINCIA").map((p) => ({
-    provincia: p.nombre,
-    comunas: hijos(p.id, "COMUNA").map((c) => c.nombre),
+    codigo: p.codigo,
+    nombre: p.nombre,
+    comunas: hijos(p.id, "COMUNA").map((c) => ({
+      codigo: c.codigo,
+      nombre: c.nombre,
+    })),
   })),
 }));
 
