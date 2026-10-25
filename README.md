@@ -2,86 +2,91 @@
 
 **La furia tiene una voz.**
 
-Plataforma web para una comunidad de mujeres y madres: ofertas laborales, un mercado de emprendimientos y un espacio para conocer la voz detrás del proyecto. Estado actual: **en construcción**.
+Plataforma web para una comunidad de mujeres y madres. Busca conectar a la comunidad con oportunidades laborales, dar visibilidad a emprendimientos y compartir la historia que da origen al proyecto.
+
+**Estado del proyecto:** en construcción.
 
 ## El problema que queremos resolver
 
-Criar es un trabajo, y su carga no se reparte de forma igual. Esa desigualdad se vive cada día en casa, y se nota también en el acceso al trabajo y en los espacios donde las mujeres pueden ser escuchadas.
+Criar es un trabajo, y su carga no se reparte de forma igual. Esa desigualdad se vive cada día en casa y también se refleja en el acceso al trabajo y en los espacios donde las mujeres pueden ser escuchadas.
 
-Mamá Furiosa parte de una idea: **criar en igualdad también es político**. La plataforma convierte esa idea en herramientas concretas:
+Mamá Furiosa parte de una idea: **criar en igualdad también es político**.
 
-- **Comunidad:** un lugar donde las mujeres se escuchan, comparten y se organizan, con ofertas laborales pensadas para ellas.
-- **Tienda:** un mercado para dar visibilidad a emprendimientos de mujeres y madres.
-- **Sobre mí:** la historia y la voz de quien fundó el proyecto.
+## Funcionalidades actuales
 
-El tono de marca, definido en el manual de identidad, se apoya en tres principios:
+- **Comunidad:** ofertas laborales, tarjetas y mapa interactivo con filtro por región.
+- **Tienda:** espacio destinado al mercado de emprendimientos.
+- **Sobre mí:** historia y voz de quien fundó el proyecto.
 
-- **Firmeza:** argumentos claros. El rojo no sustituye la evidencia.
-- **Cuidado:** cercanía sin romantizar la sobrecarga.
-- **Comunidad:** mujeres que se escuchan, comparten y se organizan.
+## Stack tecnológico
 
-## Stack
-
-| Capa                 | Tecnología                                                                       |
-| -------------------- | -------------------------------------------------------------------------------- |
-| Framework            | [Next.js](https://nextjs.org) 16 (App Router)                                    |
-| Interfaz             | React 19                                                                         |
-| Estilos              | Tailwind CSS 4                                                                   |
-| Base de datos        | [Neon](https://neon.tech) (PostgreSQL serverless) con `@neondatabase/serverless` |
-| Tipografías          | Inter y Archivo Black, cargadas con `next/font/google`                           |
-| Calidad de código    | ESLint 9 con `eslint-config-next`                                                |
-| Control de versiones | Git y GitHub                                                                     |
-| Despliegue           | Render                                                                           |
+| Capa                 | Tecnología                   |
+| -------------------- | ---------------------------- |
+| Framework            | Next.js 16 (App Router)      |
+| Interfaz             | React 19                     |
+| Estilos              | Tailwind CSS 4               |
+| Base de datos        | Neon (PostgreSQL serverless) |
+| Mapas                | Leaflet y React Leaflet      |
+| Datos geográficos    | GeoJSON                      |
+| Tipografías          | Inter y Archivo Black        |
+| Calidad de código    | ESLint 9                     |
+| Control de versiones | Git y GitHub                 |
+| Despliegue           | Render                       |
 
 ## Páginas
 
-| Ruta         | Contenido                                        |
-| ------------ | ------------------------------------------------ |
-| `/`          | Portada con el mensaje de marca                  |
-| `/comunidad` | Ofertas laborales, leídas desde la base de datos |
-| `/tienda`    | Mercado de emprendimientos (próximamente)        |
-| `/sobre-mi`  | Biografía (próximamente)                         |
+| Ruta         | Contenido                            |
+| ------------ | ------------------------------------ |
+| `/`          | Portada y mensaje de marca           |
+| `/comunidad` | Ofertas laborales y mapa interactivo |
+| `/tienda`    | Mercado de emprendimientos           |
+| `/sobre-mi`  | Historia del proyecto                |
 
 ## Identidad visual
 
-Todo sigue el manual de identidad de la marca.
+- **Fondo:** hueso (`#F2F0EB`).
+- **Superficies:** blanco (`#FFFFFF`).
+- **Texto:** negro y carbón (`#111111`).
+- **Acento:** rojo (`#F90303`).
+- **Titulares:** Archivo Black.
+- **Texto general:** Inter.
 
-- **Colores:** hueso `#F2F0EB` como fondo, blanco `#FFFFFF` para cabecera y tarjetas, negro y carbón `#111111` para texto, rojo `#F90303` como acento. Apoyo: gris cálido, arena, rosa empolvado y ciruela.
-- **Tipografía:** Archivo Black para titulares (`h1` y `h2`), Inter para todo lo demás.
-- **Sin modo oscuro** por ahora: el manual no lo define.
+Los colores y las reglas tipográficas principales están centralizados en `src/app/globals.css`.
 
-Los colores y tamaños de titulares viven en `src/app/globals.css`, en un solo lugar.
+## Criterios de desarrollo
 
-## Cómo se construye
+- **Mobile first:** se priorizan los dispositivos móviles.
+- **Componentes reutilizables:** se mantienen en `src/components/`.
+- **Configuración centralizada:** enlaces y redes sociales se gestionan desde `src/lib/`.
+- **Separación de responsabilidades:** la consulta a la base de datos permanece en el servidor y la interacción del mapa se gestiona en componentes de cliente.
 
-- **Mobile first:** la plataforma se verá principalmente en celulares. Los estilos base son los del celular y los prefijos `md:` añaden cambios desde 768 px.
-- **Centralizado:** lo que se repite se define una vez.
-  - El contenedor de las páginas está en `src/app/layout.js`.
-  - Los enlaces del menú y del footer salen de `src/lib/enlaces.js`.
-  - Las redes sociales salen de `src/lib/redes.js`.
-  - Los componentes reutilizables están en `src/components/`.
+## Estructura del proyecto
 
-## Estructura
-
-```
+```text
 src/
 ├── app/
-│   ├── layout.js        # Cabecera, contenedor y footer
-│   ├── globals.css      # Colores y titulares
-│   ├── page.js          # Portada
+│   ├── layout.js
+│   ├── globals.css
+│   ├── page.js
 │   ├── comunidad/
+│   │   └── page.js
 │   ├── tienda/
 │   └── sobre-mi/
 ├── components/
 │   ├── Header.js
-│   ├── MenuMovil.js     # Menú hamburguesa
+│   ├── MenuMovil.js
 │   ├── Footer.js
-│   ├── Hero.js          # Bloque de mensaje
-│   └── Boton.js
+│   ├── Hero.js
+│   ├── Boton.js
+│   ├── MapaRegiones.js
+│   ├── MapaRegionesCarga.js
+│   └── ComunidadExplorador.js
 └── lib/
-    ├── db.js            # Conexión a Neon
+    ├── db.js
     ├── enlaces.js
-    └── redes.js
+    ├── redes.js
+    ├── lugares.js
+    └── ubicaciones.js
 ```
 
 ## Cómo correrlo en local
@@ -92,13 +97,13 @@ Requiere Node.js 20.9 o superior.
 npm install
 ```
 
-Crea un archivo `.env.local` en la raíz con la conexión a la base de datos de Neon:
+Crea `.env.local` en la raíz:
 
-```
+```env
 DATABASE_URL=postgresql://...
 ```
 
-La página de comunidad lee la tabla `ofertas`, con las columnas `id`, `titulo`, `emprendimiento`, `ciudad`, `comuna` y `creado_en`.
+Inicia el servidor:
 
 ```bash
 npm run dev
@@ -108,6 +113,7 @@ Abre [http://localhost:3000](http://localhost:3000).
 
 ## Pendiente
 
-- Logo definitivo (hoy es texto en Archivo Black).
-- Enlaces de redes sociales de la marca.
-- Páginas de tienda y sobre mí.
+- Definir el logo definitivo.
+- Completar los enlaces de redes sociales.
+- Desarrollar las funcionalidades de tienda y sobre mí.
+- Continuar ampliando las funcionalidades de Comunidad.
