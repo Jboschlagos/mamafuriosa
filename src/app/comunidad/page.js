@@ -1,31 +1,30 @@
 import { sql } from "@/lib/db";
-import { nombreComuna, nombreProvincia } from "@/lib/lugares";
-import MapaRegionesCarga from "@/components/MapaRegionesCarga";
+import ComunidadExplorador from "@/components/ComunidadExplorador";
 
 export default async function Comunidad() {
   const ofertas = await sql`
-  SELECT id, titulo, emprendimiento, provincia, comuna
-  FROM ofertas
-  WHERE estado = 'publicada'
-  ORDER BY creado_en DESC
-`;
+    SELECT id, titulo, emprendimiento, provincia, comuna
+    FROM ofertas
+    WHERE estado = 'publicada'
+    ORDER BY creado_en DESC
+  `;
 
   return (
-    <>
-      <h1>Comunidad</h1>
+    <main className="mx-auto max-w-7xl px-4 py-10 md:px-8">
+      <header className="mb-8">
+        <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-rojo">
+          Mama Furiosa
+        </p>
 
-      <div className="mt-4 grid gap-6 md:grid-cols-[2fr_3fr] md:items-start">
-        <MapaRegionesCarga />
+        <h1>Comunidad</h1>
 
-        <ul>
-          {ofertas.map((oferta) => (
-            <li key={oferta.id}>
-              {oferta.titulo} · {oferta.emprendimiento} ·{" "}
-              {nombreComuna(oferta.comuna)}, {nombreProvincia(oferta.provincia)}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-carbon/70 md:text-lg">
+          Conecta con oportunidades laborales, emprendimientos y personas de
+          nuestra comunidad.
+        </p>
+      </header>
+
+      <ComunidadExplorador ofertas={ofertas} />
+    </main>
   );
 }

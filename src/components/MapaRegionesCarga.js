@@ -7,6 +7,6 @@ const MapaRegiones = dynamic(() => import("./MapaRegiones"), {
   loading: () => <p>Cargando mapa…</p>,
 });
 
-export default function MapaRegionesCarga() {
-  return <MapaRegiones />;
+export default function MapaRegionesCarga(props) {
+  return <MapaRegiones {...props} />;
 }
