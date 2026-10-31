@@ -1,6 +1,8 @@
 import { sql } from "@/lib/db";
 import ComunidadExplorador from "@/components/ComunidadExplorador";
 
+export const revalidate = 600;
+
 export default async function Comunidad() {
   const ofertas = await sql`
     SELECT id, titulo, emprendimiento, provincia, comuna
@@ -10,7 +12,7 @@ export default async function Comunidad() {
   `;
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-10 md:px-8">
+    <div className="py-10">
       <header className="mb-8">
         <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-rojo">
           Mama Furiosa
@@ -25,6 +27,6 @@ export default async function Comunidad() {
       </header>
 
       <ComunidadExplorador ofertas={ofertas} />
-    </main>
+    </div>
   );
 }

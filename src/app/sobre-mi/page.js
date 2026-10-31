@@ -50,7 +50,7 @@ export default function SobreMi() {
   }
 
   return (
-    <main className="bg-surface text-carbon">
+    <div className="bg-surface text-carbon">
       {/* Presentación */}
       <section className="mx-auto max-w-[1200px] px-4 py-16 md:px-8 md:py-24">
         <p className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-carbon/60">
@@ -178,6 +178,6 @@ export default function SobreMi() {
           </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
